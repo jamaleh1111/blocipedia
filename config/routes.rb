@@ -4,6 +4,8 @@ devise_for :users
 
 resources :users 
 resources :wikis
+resources :charges, only: [:new, :create]
+
 
 
 
