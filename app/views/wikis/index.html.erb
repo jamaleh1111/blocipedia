@@ -1,12 +1,12 @@
 <h1>My Wikis</h1>
 <% if policy(Wiki.new).create? %>
-  <%= link_to "New Post", new_user_wiki_path, class: 'btn btn-success' %>
+  <%= link_to "New Wiki", new_wiki_path, class: 'btn btn-success' %>
 <% end %>
 <% @wikis.each do |wiki| %>
   <div class="media">
     <div class="media-body">
       <h4 class="media-heading">
-        <%= link_to wiki.title, user_wiki_path(current_user, wiki.id) %>
+        <%= link_to wiki.title, wiki_path(wiki.id) %>
       </h4>
     </div>
   </div>
