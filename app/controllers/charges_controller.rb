@@ -48,10 +48,16 @@ class ChargesController < ApplicationController
   def destroy
     customer = Stripe::Customer.retrieve(current_user.stripe_id)
     customer.subscriptions.retrieve(current_user.stripe_subscription).delete
-    current_user.update_attributes(role: "standard", stripe_subscription: nil, stripe_id: nil)
-    flash[:success] = "Your subscription has been cancelled.  Your private wikis will now be made public."
+    flash[:alert] = "Your subscription has been cancelled.  Your private wikis will now be made public."
+    
+    current_user.update_attributes(
+      role: "standard", 
+      stripe_subscription: nil, stripe_id: nil
+    )
+
     redirect_to root_path
-  end
+  end 
+  
 end
 
   
