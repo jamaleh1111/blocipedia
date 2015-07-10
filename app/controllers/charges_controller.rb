@@ -10,14 +10,14 @@ class ChargesController < ApplicationController
       customer = Stripe::Customer.create(
         email: current_user.email,
         card: params[:stripeToken],
-        plan: 'BigMoney Membership'
+        plan: 'Blocipedia'
       )
 
-      # # charge = Stripe::Charge.create(
-      # #   customer: customer.id,
-      # #   amount: @amount,
-      # #   description: "BigMoney Membership - #{current_user.email}",
-      # #   currency: 'usd'
+      # charge = Stripe::Charge.create(
+      #   customer: customer.id,
+      #   amount: @amount,
+      #   description: "BigMoney Membership - #{current_user.email}",
+      #   currency: 'usd'
       # )
 
       current_user.update_attributes(
@@ -40,9 +40,9 @@ class ChargesController < ApplicationController
   def new
     @stripe_btn_data = {
       key: "#{ Rails.configuration.stripe[:publishable_key] }",
-      description: "BigMoney Membership - #{current_user.name}",
+      plan: 'Blocipedia',
       amount: @amount
-      }
+    }
   end 
 
   def destroy
