@@ -1,6 +1,6 @@
 class WikisController < ApplicationController
   def index
-    @wikis = Wiki.visible_to(current_user)
+    @wikis = policy_scope(Wiki)    
     authorize @wikis
   end
 
@@ -55,6 +55,7 @@ class WikisController < ApplicationController
   end 
 
   private
+  
   def wiki_params
     params.require(:wiki).permit(:title, :body, :private)
   end 
