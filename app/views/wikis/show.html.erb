@@ -1,4 +1,4 @@
-<h1><%= @wiki.title %></h1>
+<h1><%= markdown_to_html @wiki.title %></h1>
 <% if policy(@wiki).edit? %>
   <%= link_to "Edit", edit_wiki_path(@wiki), class: 'btn btn-success' %>
 <% end %>
@@ -8,4 +8,4 @@
 
 
 
-<p><%= @wiki.body %></p>
+<p><%= markdown_to_html @wiki.body %></p>
