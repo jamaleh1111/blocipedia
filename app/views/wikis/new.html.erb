@@ -18,9 +18,8 @@
         <%= f.label :body %>
         <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter post body" %>
       </div>
-      <div class="form-group">
-        <%= f.label :private, class: 'checkbox' do %>
-        <%= f.check_box :private %> Private topic
+      <div>
+        <% render 'wikis/form' %>
       </div>
       <div class="form-group">
         <%= f.submit "Save", class: 'btn btn-success' %>
@@ -28,4 +27,3 @@
     <% end %>
   </div>
 </div>
-<% end %>
