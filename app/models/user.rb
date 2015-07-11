@@ -1,7 +1,6 @@
 class User < ActiveRecord::Base
-
-  has_many :wikis
-  has_many :collaborators, through: :wikis
+  has_many :collaborators
+  has_many :wikis, through: :collaborators
 
   after_initialize :default_role
   # Include default devise modules. Others available are:
@@ -20,5 +19,6 @@ class User < ActiveRecord::Base
   def default_role
     default_role ||= 'standard'   
   end  
+
 
 end

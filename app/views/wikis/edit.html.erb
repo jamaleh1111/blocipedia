@@ -10,3 +10,8 @@
   </div>
   <%= render partial: 'form', locals: { wiki: @wiki } %>
 </div>
+
+<%= @wiki.collaborators << (:user_id, :wiki_id) %>
+
+<!-- put a add_collobarotors button here that links to an index of users.  
+put a button to edit collaborators -->
