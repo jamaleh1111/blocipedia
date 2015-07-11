@@ -1,6 +1,6 @@
 class Wiki < ActiveRecord::Base
   belongs_to :user
-  has_many :collaborators, through: :users
+  has_many :collaborators, through: :user
 
   # def self.visible_to(user)
 

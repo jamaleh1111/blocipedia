@@ -10,19 +10,21 @@ class WikiPolicy < ApplicationPolicy
   end 
 
   class Scope
-    attr_reader :user, :Scope
+    attr_reader :user, :scope
 
-    def initializer(user, scope)
+    def initialize(user, scope)
       @user = user
       @scope = scope
     end 
 
     def resolve
       wikis = []
-      if user.role == 'admin'
+      if user.admin?
         wikis = scope.all 
+      elsif user.premium?
+        all_wikis = scope.all
         all_wikis.each do |wiki|
-          if wiki.public? || wiki.user == user || wiki.users.include?(user)
+          if wiki.private != true || wiki.user == user || wiki.users.include?(user)
             wikis << wiki
           end
         end 
@@ -30,7 +32,7 @@ class WikiPolicy < ApplicationPolicy
         all_wikis = scope.all 
         wikis = []
         all_wikis.each do |wiki|
-          if wiki.public || wiki.users.include?(user)
+          if wiki.private != true || wiki.users.include?(user)
             wikis << wiki
           end 
         end 
