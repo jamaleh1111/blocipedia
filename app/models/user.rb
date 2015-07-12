@@ -20,5 +20,13 @@ class User < ActiveRecord::Base
     default_role ||= 'standard'   
   end  
 
+  def add_collaborator(user)
+    collaboration = Collaborator.where(wiki: @wiki, user: self).first
+    if collaboration
+      return true
+    else
+      return false
+    end 
+  end 
 
 end
