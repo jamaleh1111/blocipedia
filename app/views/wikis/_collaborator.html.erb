@@ -1,8 +1,0 @@
-<div class="collaborator">
-  <% if collaborator = wiki.add_collaborator(user) %>
-    <%= link_to, "delete collaborator", users_path, class: 'btn btn-danger' %>
-    <% end %>
-  <% else %>
-    <%= link_to "add collaborator", users_path, class: 'btn btn-primary' %> 
-    <% end %>
-</div>

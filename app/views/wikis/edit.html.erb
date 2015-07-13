@@ -1,16 +1,66 @@
 <h1>Edit Wiki</h1>
 
-<div class="row">
-  <div class="col-md-4">
-    <p>Guidelines for wikis</p>
-    <ul>
-      <li>Write guidelines for wikis</li>
-      <li>Write more guidelines for wikis</li>
-    </ul>
-  </div>
-  <%= render partial: 'form', locals: { wiki: @wiki } %>
-</div>
-  <%= render partial: 'wikis/collaborator', locals: { wiki: @wiki } %>
+<%= form_for @wiki do |f| %>
+  <input type="hidden" name="col=ids" id="col-ids">
 
-<!-- put a add_collobarotors button here that links to an index of users.  
-put a button to edit collaborators -->
+  <div class="form-group">
+    <%= f.label :title %>
+    <%= f.text_field :title, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :body %>
+    <%= f.text_area :body, rows: 12, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit "Update", class: 'btn btn-success', id: 'add-collaborators' %>
+  </div>
+
+  <% if current_user.admin? || current_user.premium? %>
+    <div class="form-group">
+      <%= f.check_box :private %> Private wiki
+      <%= f.label :private, calss: 'checkbox' do %>
+      <% end %>
+    </div>
+
+    <hr class="divider">
+
+    <h4>Add Collaborators</h4>
+
+    <ul id="list-group">
+      <% @users.each do |user| %>
+        <li class="list-group-item" input type="col-id" id="<%= user.id %>">
+            <%= f.label :collaborator, class: 'checkbox' do %>
+            <%= f.check_box :user_id %>
+            <%= user.username %>
+            <% end %>
+
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+  <% end %>
+
+<script>
+    function checkArray(array, id){
+      var index = array.indexOf(id);
+      if(index > -1){
+      array.splice(index, 1);
+      }
+      else{
+      array.push(id)
+      }
+      console.log(array);
+      return array;
+    }
+    $(document).ready(function() {
+      var selected = []
+      $('#list-group li').click( function () {
+          checkArray(selected, this.id);
+      } );
+      $('#add-collaborators').click( function () {
+    $('#col-ids').val(selected);
+    } );
+  });
+</script>

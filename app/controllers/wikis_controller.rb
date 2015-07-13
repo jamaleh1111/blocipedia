@@ -27,12 +27,19 @@ class WikisController < ApplicationController
 
   def edit
     @wiki = Wiki.find(params[:id])
+    @users = User.all
     authorize @wiki
   end
 
   def update
     @wiki = Wiki.find(params[:id])
+    ids = params['col-ids'].split(",") 
+    ids.each do |id|
+      Collaborator.create(user_id: id, wiki_id:(params[:id]))
+    end 
+
     authorize @wiki
+    
     if @wiki.update_attributes(wiki_params)
       flash[:notice] = "Wiki was updated."
       redirect_to @wiki
