@@ -24,7 +24,7 @@
     <% if current_user.role == 'admin' || current_user.role == 'premium' %>
     <div class="form-group">
       <%= f.check_box :private %> Private wiki
-      <%= f.label :private, calss: 'checkbox' do %>
+      <%= f.label :private, class: 'checkbox' do %>
       <% end %>
       </div>
     <% end %>

@@ -10,4 +10,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @wikis = @user.wikis
   end
+
+  
 end

@@ -8,7 +8,9 @@ class Wiki < ActiveRecord::Base
   validates :body, length: {minimum: 10 }, presence: true
 
   
-
+  def authors
+    self.users.map {|user| user.name}.join(", ")
+  end 
 
 
 
