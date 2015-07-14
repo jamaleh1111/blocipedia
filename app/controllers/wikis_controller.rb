@@ -1,7 +1,6 @@
 class WikisController < ApplicationController
   def index
-    @wikis = Wiki.visible_to(current_user)
-    authorize @wikis
+    @wikis = policy_scope(Wiki)
   end
 
   def show
@@ -15,6 +14,7 @@ class WikisController < ApplicationController
 
   def create
     @wiki = current_user.wikis.build(wiki_params)
+    @wiki.user_id = current_user.id
     authorize @wiki
     if @wiki.save
       flash[:notice] = "Wiki was saved."
@@ -27,13 +27,20 @@ class WikisController < ApplicationController
 
   def edit
     @wiki = Wiki.find(params[:id])
+    @users = User.all
     authorize @wiki
   end
 
   def update
     @wiki = Wiki.find(params[:id])
+    ids = params['col-ids'].split(",") 
+    ids.each do |id|
+      Collaborator.create(user_id: id, wiki_id:(params[:id]))
+    end 
+
     authorize @wiki
-    if @wiki.update_attributes(wiki_params)
+    
+    if @wiki.update_attributes(params.require(:wiki).permit(:title, :body, :private))
       flash[:notice] = "Wiki was updated."
       redirect_to @wiki
     else
@@ -55,8 +62,9 @@ class WikisController < ApplicationController
   end 
 
   private
+  
   def wiki_params
-    params.require(:wiki).permit(:title, :body, :private)
+    params.require(:wiki).permit(:title, :body, :private, :user_id)
   end 
 
 end 

@@ -4,7 +4,6 @@ class ChargesController < ApplicationController
 
   def create
     if current_user.stripe_id.nil?
-      amount = @amount
       @amount = 10_00
 
       customer = Stripe::Customer.create(
@@ -48,13 +47,11 @@ class ChargesController < ApplicationController
   def destroy
     customer = Stripe::Customer.retrieve(current_user.stripe_id)
     customer.subscriptions.retrieve(current_user.stripe_subscription).delete
-    flash[:alert] = "Your subscription has been cancelled. Your private wikis will now be made public."
+  
+    current_user.update_attributes(role: "standard", stripe_subscription: nil, stripe_id: nil) 
+    current_user.downgrade_wikis
     
-    current_user.update_attributes(
-      role: "standard", 
-      stripe_subscription: nil, stripe_id: nil
-    )
-
+    flash[:alert] = "Your subscription has been cancelled. Your private wikis will now be made public."
     redirect_to root_path
   end 
   
