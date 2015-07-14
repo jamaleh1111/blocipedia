@@ -3,3 +3,6 @@
 <%= link_to "Premium", new_charge_path, class: 'btn btn-primary' %> 
 <p>Upgrade to create private wikis!</p>
 
+<% @wikis.each do |wiki| %>
+  <%= link_to wiki.title, wiki %>
+<% end %>

@@ -4,7 +4,6 @@ class ChargesController < ApplicationController
 
   def create
     if current_user.stripe_id.nil?
-      amount = @amount
       @amount = 10_00
 
       customer = Stripe::Customer.create(
@@ -49,7 +48,9 @@ class ChargesController < ApplicationController
     customer = Stripe::Customer.retrieve(current_user.stripe_id)
     customer.subscriptions.retrieve(current_user.stripe_subscription).delete
     current_user.update_attributes(role: "standard", stripe_subscription: nil, stripe_id: nil)
-    flash[:success] = "Your subscription has been cancelled."
+    current_user.downgrade_wikis
+
+    flash[:notice] = "Your subscription has been cancelled."
     redirect_to root_path
   end
 end

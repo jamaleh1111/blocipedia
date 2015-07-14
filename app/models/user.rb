@@ -29,4 +29,11 @@ class User < ActiveRecord::Base
     end 
   end 
 
+  def downgrade_wikis
+    the_wikis = Wiki.where(user_id: self.id, private: true)
+    the_wikis.each do |wiki|
+      wiki.update_attributes(private: false)
+    end
+  end
+
 end

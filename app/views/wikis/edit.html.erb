@@ -20,7 +20,7 @@
   <% if current_user.admin? || current_user.premium? %>
     <div class="form-group">
       <%= f.check_box :private %> Private wiki
-      <%= f.label :private, calss: 'checkbox' do %>
+      <%= f.label :private, class: 'checkbox' do %>
       <% end %>
     </div>
 
@@ -33,7 +33,7 @@
         <li class="list-group-item" input type="col-id" id="<%= user.id %>">
             <%= f.label :collaborator, class: 'checkbox' do %>
             <%= f.check_box :user_id %>
-            <%= user.username %>
+            <%= user.email %>
             <% end %>
 
           </li>
