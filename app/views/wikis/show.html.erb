@@ -2,7 +2,7 @@
 <p><%= markdown_to_html @wiki.body %></p>
 <small>
   submitted <%= time_ago_in_words(@wiki.created_at) %> ago by 
-  <%= @wiki.user_id %><br>
+  <%= @wiki.authors %><br>
 </small>
 
 <% if policy(@wiki).edit? %>
