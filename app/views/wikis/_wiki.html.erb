@@ -1,0 +1,14 @@
+<% @wikis.each do |wiki| %>
+  <div class="media">
+    <div class="media-body">
+      <h4 class="media-heading">
+        <%= link_to wiki.title, wiki %>
+      </h4>
+      <small>
+    submitted <%= time_ago_in_words(wiki.created_at) %> ago by 
+    <%= wiki.get_owner %><br>
+      </small>
+ 
+    </div>
+  </div>
+<% end %>
