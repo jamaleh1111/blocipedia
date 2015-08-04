@@ -18,8 +18,10 @@
 
 body {
   font-family: 'Source Code Pro';
-  background: #111;
-  color: #bbbbbb;
+  background-image: image-url('collaboration.jpg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  color: #aaaa99;
 }
 .jumbotron {
   background: #aaaa99;
