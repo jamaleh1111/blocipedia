@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @wikis = @user.wikis
+    @wikis = Wiki.where(user_id: @user)
   end
 
   

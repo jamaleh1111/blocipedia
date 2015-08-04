@@ -1,14 +1,5 @@
 require 'faker'
 
-50.times do
-  Wiki.create!(
-    title: Faker::Lorem.sentence,
-    body:  Faker::Lorem.paragraph
-  )
-end 
-
-wikis = Wiki.all
-
 admin = User.new(
   name:      'Admin User',
   email:     'admin@example.com',
@@ -46,6 +37,16 @@ premium.save!
   user.save!
 end 
 users = User.all
+
+50.times do
+  Wiki.create!(
+    title: Faker::Lorem.sentence,
+    body:  Faker::Lorem.paragraph,
+    user: users.sample
+  )
+end 
+
+wikis = Wiki.all
 
 puts "Seed finished"
 puts "#{Wiki.count} wikis created"

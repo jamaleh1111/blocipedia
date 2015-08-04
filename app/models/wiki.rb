@@ -12,7 +12,9 @@ class Wiki < ActiveRecord::Base
     self.users.map {|user| user.name}.join(", ")
   end 
 
-
+  def get_owner
+    User.find(self.user_id).name
+  end
 
   # def self.visible_to(user)
 

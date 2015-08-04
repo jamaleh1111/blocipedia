@@ -10,7 +10,7 @@
       </h4>
       <small>
     submitted <%= time_ago_in_words(wiki.created_at) %> ago by 
-    <%= wiki.authors %><br>
+    <%= wiki.get_owner %><br>
       </small>
  
     </div>

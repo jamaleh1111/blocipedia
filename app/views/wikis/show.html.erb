@@ -2,7 +2,9 @@
 <p><%= markdown_to_html @wiki.body %></p>
 <small>
   submitted <%= time_ago_in_words(@wiki.created_at) %> ago by 
-  <%= @wiki.authors %><br>
+  <%= @wiki.get_owner %><br>
+  <%= "Collaborators: #{@wiki.authors}" if @wiki.collaborators.count > 0 %><br>
+
 </small>
 
 <% if policy(@wiki).edit? %>
