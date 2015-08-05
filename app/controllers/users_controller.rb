@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @wikis = Wiki.where(user_id: @user)
+    @wikis = policy_scope(Wiki).select {|w| w.user_id == @user.id}
   end
 
   

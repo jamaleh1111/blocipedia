@@ -11,6 +11,14 @@ class User < ActiveRecord::Base
   def admin?
     role == 'admin'
   end 
+
+  def can_see?(resource)
+    if self.id == resource.id || self.admin? || Collaborator.where(user: self, wiki: resource).first
+      return true
+    else
+      return false
+    end
+  end
   
   def premium?
     role == 'premium'
