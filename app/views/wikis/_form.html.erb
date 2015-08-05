@@ -4,7 +4,7 @@
       <div class="alert alert-danger">
         <h4>There are <%= pluralize(wiki.errors.count, "error") %>.</h4>
         <ul>
-          <% wiki.errrors.full_messages.each do |msg| %>
+          <% wiki.errors.full_messages.each do |msg| %>
             <li><%= msg %></li>
           <% end %>
         </ul>
