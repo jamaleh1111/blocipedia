@@ -18,14 +18,17 @@
 
 body {
   font-family: 'Source Code Pro';
+  text-align: center;
   background-image: image-url('collaboration-gears.jpg');
   background-repeat: repeat;
   background-size: 100%;
   color: #111;
 }
-.jumbotron {
-  background: #aaaa99;
-  color: #111
+h1 {
+  font-size: 4em;
+}
+h4 {
+  font-style: italic;
 }
 
 .user-info {
@@ -35,3 +38,4 @@ body {
 .nav {
   margin-top: 5px;
 }
+

@@ -2,20 +2,21 @@
 <div>
 
   <h1>Welcome to Blocipedia</h1>
-  <p>Blocipedia is .......</p>
-  <p>Create and share wikis!</p>
-  <p> 
-      <%= link_to "Sign Up", new_user_registration_path, class: 'btn btn-primary' %> today for FREE!
-  </p>
+  <h2>Blocipedia is .......</h2>
+  <h3>Create and share wikis!</h3>
+    <p> 
+        <%= link_to "Sign Up", new_user_registration_path, class: 'btn btn-primary' %> today for FREE!
+    </p>
+    
 </div>
 
 <div class="row">
   <div class="col-md-6">
-    <h2>Create as many wikis as you like!</h2>
+    <h4>Create as many wikis as you like!</h4>
         <%= link_to "Free Plan", new_user_registration_path, class: 'btn btn-primary' %>
   </div>
   <div class="col-md-6">
-    <h2>Upgrade to the Premium Plan to create private wikis</h2>
+    <h4>Upgrade to the Premium Plan to create private wikis</h4>
         <%= link_to "Premium Plan", new_charge_path, class: 'btn btn-primary' %>
   </div>
 </div>
