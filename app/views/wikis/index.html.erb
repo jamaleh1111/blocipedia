@@ -3,3 +3,4 @@
   <%= link_to "New Wiki", new_wiki_path, class: 'btn btn-success' %>
 <% end %>
 <%= render partial: 'wikis/wiki' %>
+<%= will_paginate @wikis %>
