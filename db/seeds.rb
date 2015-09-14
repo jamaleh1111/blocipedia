@@ -13,8 +13,7 @@ admin.save!
 standard = User.new(
   name:     'Standard User',
   email:    'standard@example.com',
-  password: 'helloworld',
-  role:     'moderator'
+  password: 'helloworld'
 )
 standard.skip_confirmation!
 standard.save!
@@ -22,7 +21,8 @@ standard.save!
 premium = User.new(
   name:       'Premium User',
   email:      'premium@example.com',
-  password:   'helloworld'
+  password:   'helloworld',
+  role:       'premium'
 )
 premium.skip_confirmation!
 premium.save!
@@ -42,7 +42,7 @@ users = User.all
   Wiki.create!(
     title: Faker::Lorem.sentence,
     body:  Faker::Lorem.paragraph,
-    user: users.sample
+    user_id: users.sample.id
   )
 end 
 
