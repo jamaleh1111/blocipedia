@@ -1,3 +1,4 @@
 <h3>Wikis by: <%= @user.name %></h3>
 
 <%= render partial: 'wikis/wiki' %>
+<%= will_paginate @wiki %>
