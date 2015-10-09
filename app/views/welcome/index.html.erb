@@ -1,23 +1,27 @@
 <br>
 <div class="text-center">
 
-  <h1>Welcome to Blocipedia</h1>
-  <h2>Blocipedia is .......</h2>
-  <h3>Create and share wikis!</h3>
-    <p> 
-        <%= link_to "Sign Up", new_user_registration_path, class: 'btn btn-primary' %> today for FREE!
-    </p>
-    
+<h1>Welcome to Blocipedia</h1>
+<!-- <div class="well">
+ -->  <h2 class="description">Blocipedia is a great way to collaborate on community-sourced content.  </br> Make wikis for fun or for work.</br> This app lets you create and share wikis publicly or privately </br> with other collaborators of your choice.</h2>
+<!-- </div>
+ -->  
 </div>
-
-<div class="row text-center">
+</br>
+<div class="row">
+  <div class="text-center">
+  <!-- <div class="col-md-4">
+    <h3>Create and share wikis!</h3>
+    <p><%= link_to "Sign Up", new_user_registration_path, class: 'btn btn-primary' %> today for FREE!</p>
+  </div> --> <!-- closing "col-md-4" --> 
   <div class="col-md-6">
-    <h4>Create as many wikis as you like!</h4>
-        <%= link_to "Free Plan", new_user_registration_path, class: 'btn btn-primary' %>
+    <h3>Create as many wikis as you like!</h3>
+      <%= link_to "Free Plan", new_user_registration_path, class: 'btn btn-primary' %>
   </div>
   <div class="col-md-6">
-    <h4>Upgrade to the Premium Plan to create private wikis</h4>
-        <%= link_to "Premium Plan", new_charge_path, class: 'btn btn-primary' %>
+    <h3>Upgrade to the Premium Plan to create private wikis</h3>
+      <%= link_to "Premium Plan", new_charge_path, class: 'btn btn-primary' %>
   </div>
+</div> <!-- close "row" -->
 </div>
 
