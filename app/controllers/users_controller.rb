@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @wikis = policy_scope(Wiki).select {|w| w.user_id == @user.id}.paginate(page: params[:page], per_page: 10)
+    @wikis = policy_scope(Wiki).select {|w| w.user_id == @user.id}.paginate(page: params[:page], per_page: 5)
   end
 
   
