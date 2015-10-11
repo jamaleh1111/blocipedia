@@ -17,7 +17,7 @@
     <%= f.submit "Update", class: 'btn btn-success', id: 'add-collaborators' %>
   </div>
 
-  <% if current_user.admin? || current_user.premium? %>
+  <% if current_user.admin? || (current_user.premium? && @wiki.user_id == current_user.id) %>
     <div class="form-group">
       <%= f.check_box :private %> Private wiki
       <%= f.label :private, class: 'checkbox' do %>
