@@ -1,13 +1,13 @@
 class WikiPolicy < ApplicationPolicy
-  
+
 
   def index?
     true
-  end 
+  end
 
-  
 
-  
+
+
 
 
   class Scope
@@ -16,29 +16,29 @@ class WikiPolicy < ApplicationPolicy
     def initialize(user, scope)
       @user = user
       @scope = scope
-    end 
+    end
 
     def resolve
       wikis = []
       if user.present? && user.role == 'admin'
-        wikis = scope.all 
+        wikis = scope.all
       elsif user.present? && user.role == 'premium'
         all_wikis = scope.all
         all_wikis.each do |wiki|
           if wiki.private != true || wiki.user_id == user.id || wiki.users.include?(user)
             wikis << wiki
           end
-        end 
-      else 
-        all_wikis = scope.all 
+        end
+      else
+        all_wikis = scope.all
         wikis = []
         all_wikis.each do |wiki|
           if wiki.private != true || wiki.users.include?(user)
             wikis << wiki
-          end 
-        end 
-      end 
+          end
+        end
+      end
       wikis
-    end 
-  end 
+    end
+  end
 end

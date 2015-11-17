@@ -12,15 +12,15 @@
       </div>
 
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <div class="form-group">
-        <p>Currently waiting confirmation for:</p>
-        <%= resource.unconfirmed_email %>
-      </div>
+        <div class="form-group">
+          <p>Currently waiting confirmation for:</p>
+          <%= resource.unconfirmed_email %>
+        </div>
       <% end %>
 
       <div class="form-group">
-        <%= f.label :new_password %> 
-        <i>(leave blank if you don't want to change it)</i>
+        <%= f.label :new_password %>
+          <i>(leave blank if you don't want to change it)</i>
         <%= f.password_field :new_password, class: 'form-control', placeholder: "Enter new password" %>
       </div>
       <div class="form-group">
@@ -28,8 +28,8 @@
         <%= f.password_field :new_password_confirmation, class: 'form-control', placeholder: "Enter new password confirmation" %>
       </div>
       <div class="form-group">
-        <%= f.label :current_password %> 
-        <i>(we need your current password to confirm your changes)</i>
+        <%= f.label :current_password %>
+          <i>(we need your current password to confirm your changes)</i>
         <%= f.password_field :current_password, class: 'form-control', placeholder: "Enter password" %>
       </div>
       <div class="form-group">

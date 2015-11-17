@@ -1,6 +1,6 @@
 class ChargesController < ApplicationController
-  
-  
+
+
 
   def create
     if current_user.stripe_id.nil?
@@ -12,6 +12,7 @@ class ChargesController < ApplicationController
         plan: 'Blocipedia'
       )
 
+    # i am keeping this to remember what to do for one-time charge
       # charge = Stripe::Charge.create(
       #   customer: customer.id,
       #   amount: @amount,
@@ -20,8 +21,8 @@ class ChargesController < ApplicationController
       # )
 
       current_user.update_attributes(
-        role: "premium", 
-        stripe_id: customer.id, 
+        role: "premium",
+        stripe_id: customer.id,
         stripe_subscription: customer.subscriptions.first.id
       )
 
@@ -42,19 +43,17 @@ class ChargesController < ApplicationController
       plan: 'Blocipedia',
       amount: @amount
     }
-  end 
+  end
 
   def destroy
     customer = Stripe::Customer.retrieve(current_user.stripe_id)
     customer.subscriptions.retrieve(current_user.stripe_subscription).delete
-  
-    current_user.update_attributes(role: "standard", stripe_subscription: nil, stripe_id: nil) 
+
+    current_user.update_attributes(role: "standard", stripe_subscription: nil, stripe_id: nil)
     current_user.downgrade_wikis
-    
+
     flash[:alert] = "Your subscription has been cancelled. Your private wikis will now be made public."
     redirect_to root_path
-  end 
-  
-end
+  end
 
-  
+end

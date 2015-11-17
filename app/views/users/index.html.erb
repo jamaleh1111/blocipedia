@@ -1,8 +1,9 @@
-<h1>Wiki Users</h1>
-<% @users.each do |user| %>
-  <p><%= link_to user.name, user %></p>
-<% end %>
-
-<%= will_paginate @users %>
-
-
+<div class="row text-center">
+  <div class="col-md-6 col-md-offset-3">
+  <h1>Wiki Users</h1>
+    <% @users.each do |user| %>
+      <p><%= link_to user.name, user %></p>
+    <% end %>
+  <%= will_paginate @users %>
+  </div>
+</div>

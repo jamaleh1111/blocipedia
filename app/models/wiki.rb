@@ -6,15 +6,16 @@ class Wiki < ActiveRecord::Base
 
   validates :title, length: { minimum: 3 }, presence: true
   validates :body, length: {minimum: 10 }, presence: true
-  
+
   def authors
     self.users.map {|user| user.name}.join(", ")
-  end 
+  end
 
   def get_owner
     User.find(self.user_id).name
   end
-
+  
+# Use this with out policy scope
   # def self.visible_to(user)
 
   #   if user.present? && (user.admin? || user.premium?)

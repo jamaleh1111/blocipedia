@@ -1,4 +1,7 @@
-<h3>Wikis by: <%= @user.name %></h3>
-
-<%= render partial: 'wikis/wiki' %>
-<%= will_paginate @wikis %>
+<div class="row text-center">
+  <div class="col-md-6 col-md-offset-3">
+  <h3>Wikis by: <%= @user.name %></h3>
+    <%= render partial: 'wikis/wiki' %>
+    <%= will_paginate @wikis %>
+  </div>
+</div>

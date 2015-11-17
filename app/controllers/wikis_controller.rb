@@ -1,7 +1,6 @@
 class WikisController < ApplicationController
   def index
     @wikis = policy_scope(Wiki).paginate(page: params[:page], per_page: 15)
-    # @wikis = Wiki.paginate(page: params[:page], per_page: 15)
   end
 
   def show
@@ -23,8 +22,8 @@ class WikisController < ApplicationController
     else
       flash[:error] = "There was an error saving the wiki.  Please try again."
       render :new
-    end 
-  end 
+    end
+  end
 
   def edit
     @wiki = Wiki.find(params[:id])
@@ -34,20 +33,20 @@ class WikisController < ApplicationController
 
   def update
     @wiki = Wiki.find(params[:id])
-    ids = params['col-ids'].split(",") 
+    ids = params['col-ids'].split(",")
     ids.each do |id|
       Collaborator.create(user_id: id, wiki_id:(params[:id]))
-    end 
+    end
 
     authorize @wiki
-    
+
     if @wiki.update_attributes(params.require(:wiki).permit(:title, :body, :private))
       flash[:notice] = "Wiki was updated."
       redirect_to @wiki
     else
       flash[:error] = "There was an error saving the wiki.  Please try again."
       render :edit
-    end 
+    end
   end
 
   def destroy
@@ -56,18 +55,16 @@ class WikisController < ApplicationController
     if @wiki.destroy
       flash[:notice] = "Wiki was deleted succesfully."
       redirect_to wikis_path
-    else 
+    else
       flash[:error] = "There was an error deleting wiki."
       render :show
-    end 
-  end 
+    end
+  end
 
   private
-  
+
   def wiki_params
     params.require(:wiki).permit(:title, :body, :private, :user_id)
-  end 
+  end
 
-end 
-
-
+end
